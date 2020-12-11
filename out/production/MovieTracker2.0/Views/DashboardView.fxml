@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #0d253f;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DashboardController">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="720.0" prefWidth="280.0" spacing="15.0">
+         <children>
+            <Text fx:id="welcomeText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Hi Username">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Button fx:id="trendingButton" mnemonicParsing="false" onAction="#handleTrendingButtonClick" prefHeight="100.0" prefWidth="280.0" style="-fx-background-color: none;" text="Trending Movies" textFill="#01b4e4">
+               <font>
+                  <Font name="FontAwesome" size="25.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleUpcomingButtonClick" prefHeight="100.0" prefWidth="280.0" style="-fx-background-color: none;" text="Upcoming" textFill="#01b4e4">
+               <font>
+                  <Font name="FontAwesome" size="25.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleSearchButtonClick" prefHeight="100.0" prefWidth="280.0" style="-fx-background-color: none;" text="Search for a movie" textFill="#01b4e4">
+               <font>
+                  <Font name="FontAwesome" size="25.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleWatchListButtonClick" prefHeight="100.0" prefWidth="280.0" style="-fx-background-color: none;" text="My WatchList" textFill="#01b4e4">
+               <font>
+                  <Font name="FontAwesome" size="25.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleFavouritesButtonClick" prefHeight="100.0" prefWidth="280.0" style="-fx-background-color: none;" text="My Favourites" textFill="#01b4e4">
+               <font>
+                  <Font name="FontAwesome" size="25.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleLogoutButtonClick" prefHeight="100.0" prefWidth="280.0" style="-fx-background-color: none;" text="Logout" textFill="#e30202">
+               <font>
+                  <Font name="FontAwesome" size="25.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+         <padding>
+            <Insets top="20.0" />
+         </padding>
+      </VBox>
+      <HBox fx:id="mainContent" prefHeight="720.0" prefWidth="1000.0" />
+   </children>
+</HBox>

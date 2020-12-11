@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #0d253f;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #0d253f;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SignupController">
    <children>
       <Text fill="#01b4e4" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to MovieTracker">
          <font>
@@ -49,31 +49,32 @@
             <Insets />
          </VBox.margin>
       </HBox>
-      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
          <children>
-            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#handleLoginButtonClick" prefHeight="43.0" prefWidth="98.0" style="-fx-background-color: #90cea1;" text="Login">
+            <Label prefHeight="27.0" prefWidth="120.0" text="Confirm" textFill="WHITE">
+               <font>
+                  <Font name="FontAwesome" size="24.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="passwordConfirmField" alignment="TOP_LEFT" prefHeight="26.0" prefWidth="251.0" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+         <children>
+            <Button fx:id="signupButton" mnemonicParsing="false" onAction="#handleSignupButtonClick" prefHeight="43.0" prefWidth="128.0" style="-fx-background-color: #90cea1;" text="Signup">
                <font>
                   <Font name="FontAwesome" size="24.0" />
                </font>
                <HBox.margin>
-                  <Insets right="445.0" />
+                  <Insets />
                </HBox.margin>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <Text fill="#01b4e4" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account yet?">
+            <Button fx:id="backToLoginButton" mnemonicParsing="false" onAction="#handleBackToLoginButtonClick" prefHeight="43.0" prefWidth="208.0" style="-fx-background-color: #90cea1;" text="Back to login">
                <font>
-                  <Font name="FontAwesome" size="25.0" />
-               </font>
-            </Text>
-            <Button fx:id="signupButton" mnemonicParsing="false" onAction="#handleSignupButtonClick" prefHeight="48.0" prefWidth="224.0" style="-fx-background-color: none;" text="Signup Now ! " textFill="WHITE" underline="true">
-               <font>
-                  <Font name="FontAwesome" size="25.0" />
+                  <Font name="FontAwesome" size="24.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -83,7 +84,7 @@
       </HBox>
       <HBox alignment="CENTER_RIGHT" prefHeight="130.0" prefWidth="1280.0">
          <children>
-            <ImageView fx:id="tmdbLogo" fitHeight="138.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="138.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Main/resources/assets/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.png" />
                </image>
