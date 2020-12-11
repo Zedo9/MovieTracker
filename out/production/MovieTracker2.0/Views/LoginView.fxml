@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<?import javafx.scene.control.PasswordField?>
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #0d253f;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
+   <children>
+      <Text fill="#01b4e4" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to MovieTracker">
+         <font>
+            <Font name="FontAwesome" size="44.0" />
+         </font>
+         <VBox.margin>
+            <Insets top="70.0" />
+         </VBox.margin>
+      </Text>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+         <children>
+            <Label text="Username" textFill="WHITE">
+               <font>
+                  <Font name="FontAwesome" size="24.0" />
+               </font>
+            </Label>
+            <TextField fx:id="usernameField" alignment="CENTER" prefHeight="26.0" prefWidth="251.0" />
+         </children>
+         <VBox.margin>
+            <Insets top="80.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+         <children>
+            <Label text="Password " textFill="WHITE">
+               <font>
+                  <Font name="FontAwesome" size="24.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="passwordField" alignment="CENTER" prefHeight="26.0" prefWidth="251.0" />
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+         <children>
+            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#handleLoginButtonClick" prefHeight="43.0" prefWidth="98.0" style="-fx-background-color: #90cea1;" text="Login">
+               <font>
+                  <Font name="FontAwesome" size="24.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="445.0" />
+               </HBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Text fill="#01b4e4" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account yet?">
+               <font>
+                  <Font name="FontAwesome" size="25.0" />
+               </font>
+            </Text>
+            <Button fx:id="signupButton" mnemonicParsing="false" onAction="#handleSignupButtonClick" prefHeight="48.0" prefWidth="224.0" style="-fx-background-color: none;" text="Signup Now ! " textFill="WHITE" underline="true">
+               <font>
+                  <Font name="FontAwesome" size="25.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" prefHeight="130.0" prefWidth="1280.0">
+         <children>
+            <ImageView fitHeight="138.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Assets/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.png" />
+               </image>
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
+   </children>
+</VBox>
