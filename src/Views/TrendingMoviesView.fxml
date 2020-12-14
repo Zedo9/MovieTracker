@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1000.0" style="-fx-background-color: #0d253f;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TrendingMoviesController">
+<VBox fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1000.0" style="-fx-background-color: #0d253f;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TrendingMoviesController">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
          <children>
@@ -16,23 +16,22 @@
                <font>
                   <Font name="FontAwesome" size="30.0" />
                </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
             </Text>
          </children>
          <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </HBox>
-      <ScrollPane hbarPolicy="NEVER" styleClass="mainScrollPane" stylesheets="@styles.css">
+      <ScrollPane hbarPolicy="NEVER" prefWidth="1000.0" styleClass="mainScrollPane" stylesheets="@styles.css">
          <content>
-            <FlowPane fx:id="content" alignment="TOP_CENTER" hgap="10.0" prefHeight="616.0" prefWidth="960.0" style="-fx-background-color: transparent;" vgap="10.0">
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </FlowPane>
+            <FlowPane fx:id="content" columnHalignment="CENTER" hgap="10.0" prefHeight="616.0" prefWidth="970.0" prefWrapLength="200.0" style="-fx-background-color: transparent;" vgap="30.0" />
          </content>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
       </ScrollPane>
    </children>
-   <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-   </padding>
 </VBox>

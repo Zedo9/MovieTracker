@@ -25,6 +25,7 @@ public class APIData {
             JSONObject movie = (JSONObject) e;
             result.add(getMovieById((movie.getInt("id"))));
         });
+        System.out.println(result);
         return result;
     }
 
@@ -47,10 +48,8 @@ public class APIData {
         float movieRating = resJson.getFloat("vote_average");
         int movieRevenue = resJson.getInt("revenue");
         Movie result = new Movie(moveId,movieRating,movieLength,moviePoster,movieTitle,movieReleaseDate,movieOverview,false,false);
-        //System.out.println(resJson);
-        //System.out.println(result);
-        getGenres(new JSONArray(resJson.getJSONArray("genres")));
-        return null;
+        result.setGenres(getGenres(new JSONArray(resJson.getJSONArray("genres"))));
+        return result;
     }
 
     public static ArrayList<Actor> getActors(int movieId){
@@ -62,9 +61,8 @@ public class APIData {
         ArrayList<String> result = new ArrayList<>();
         genresArray.forEach(e-> {
             JSONObject genres = (JSONObject) e;
-            System.out.println(genres.getString("name"));
+            result.add(genres.getString("name"));
         });
         return result;
     }
-
 }

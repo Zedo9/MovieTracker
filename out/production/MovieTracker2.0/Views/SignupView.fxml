@@ -59,6 +59,11 @@
             <PasswordField fx:id="passwordConfirmField" alignment="TOP_LEFT" prefHeight="26.0" prefWidth="251.0" />
          </children>
       </HBox>
+      <Text fx:id="errorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0">
+         <font>
+            <Font name="FontAwesome" size="18.0" />
+         </font>
+      </Text>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
          <children>
             <Button fx:id="signupButton" mnemonicParsing="false" onAction="#handleSignupButtonClick" prefHeight="43.0" prefWidth="128.0" style="-fx-background-color: #90cea1;" text="Signup">

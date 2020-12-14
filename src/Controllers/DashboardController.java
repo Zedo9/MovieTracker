@@ -8,7 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -27,6 +27,10 @@ public class DashboardController implements Initializable {
 
     @FXML
     private HBox mainContent;
+
+    @FXML
+    private ProgressBar progressBar;
+
 
     public void navigateTo(String fxmlLink) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../Views/"+fxmlLink));

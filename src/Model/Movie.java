@@ -17,6 +17,10 @@ public class Movie {
     private ArrayList<Movie> recommendations;
     private ArrayList<Actor> actors;
 
+    public Movie(String title){
+        this.title = title;
+    }
+
     public Movie(int id,
                  float rating,
                  int length,
@@ -124,6 +128,15 @@ public class Movie {
                 ", title='" + title + '\'' +
                 ", releaseDate='" + releaseDate + '\'' +
                 ", overview='" + overview + '\'' +
+                ",genres='" + genres + '\'' +
                 '}';
+    }
+
+    public ArrayList<String> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(ArrayList<String> genres) {
+        this.genres = genres;
     }
 }

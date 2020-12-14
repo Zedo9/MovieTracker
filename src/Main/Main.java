@@ -21,8 +21,6 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        //launch(args);
-        DBUtils db = new DBUtils();
-        db.execute("SELECT * FROM user");
+        launch(args);
     }
 }
