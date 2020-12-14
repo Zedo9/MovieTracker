@@ -4,16 +4,16 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class DBUtils {
-    private Connection conn;
-    private PreparedStatement ps;
-    private ResultSet resp;
+    private static Connection conn;
+    private static PreparedStatement ps;
+    private static ResultSet resp;
 
-    private final String DRIVER_CLASS = "com.mysql.cj.jdbc.Driver";
-    private final String URL = "jdbc:mysql://mysql-chedlyz.alwaysdata.net/chedlyz_showtracker";
-    private final String USERNAME = "chedlyz";
-    private final String PASSWORD ="tFb8rEAUcdy89ek";
+    private static final String DRIVER_CLASS = "com.mysql.cj.jdbc.Driver";
+    private static final String URL = "jdbc:mysql://mysql-chedlyz.alwaysdata.net/chedlyz_showtracker";
+    private static final String USERNAME = "chedlyz";
+    private static final String PASSWORD ="tFb8rEAUcdy89ek";
 
-    public void connect(){
+    public static void connect(){
         try {
             Class.forName(DRIVER_CLASS).newInstance();
             conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
@@ -22,7 +22,7 @@ public class DBUtils {
         }
     }
 
-    public ArrayList<User> getUsers() throws SQLException {
+    public static ArrayList<User> getUsers() throws SQLException {
         ArrayList<User> result = new ArrayList<>();
         execute("SELECT * FROM user");
         while (resp.next()){
@@ -35,7 +35,7 @@ public class DBUtils {
         return result;
     }
 
-    public void insertUser(User user){
+    public static void insertUser(User user){
         System.out.println(user);
         String query = "INSERT INTO user(username,password) VALUES (?,?);";
         connect();
@@ -50,7 +50,7 @@ public class DBUtils {
         close();
     }
 
-    public void execute(String query){
+    public static void execute(String query){
         connect();
         try {
             ps = conn.prepareStatement(query);
@@ -60,7 +60,7 @@ public class DBUtils {
         }
     }
 
-    public void close(){
+    public static void close(){
         try {
             resp.close();
             ps.close();

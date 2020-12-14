@@ -1,7 +1,5 @@
 package Main;
 
-import Model.APIData;
-import Model.DBUtils;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

@@ -2,6 +2,9 @@ package Controllers;
 
 import Model.DBUtils;
 import Model.User;
+import Tasks.FetchUsersTask;
+import Tasks.InsertUserTask;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,14 +15,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.Window;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 public class SignupController implements Initializable {
 
@@ -35,28 +41,42 @@ public class SignupController implements Initializable {
     private Button signupButton;
     @FXML
     private Text errorText;
+    @FXML
+    private VBox container;
+    private Executor exec ;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        exec = Executors.newCachedThreadPool(runnable -> {
+            Thread t = new Thread(runnable);
+            t.setDaemon(true);
+            return t ;
+        });
     }
 
     public void handleSignupButtonClick(ActionEvent e) {
+        errorText.setFill(Color.RED);
         errorText.setText("");
-        DBUtils db = new DBUtils();
         if (usernameField.getText().length() > 0){
             if (passwordField.getText().length()>0){
                 if (passwordConfirmField.getText().equals(passwordField.getText())){
-                    try {
-                        if (db.getUsers().stream().noneMatch(element -> element.getUsername().equals(usernameField.getText()))){
-                            db.insertUser(new User(1,usernameField.getText(),passwordField.getText()));
+                    FetchUsersTask fetchUsersTask = new FetchUsersTask();
+                    fetchUsersTask.setOnSucceeded((ev1) -> {
+                        List<User> result = fetchUsersTask.getValue();
+                        if (result.stream().noneMatch(element -> element.getUsername().equals(usernameField.getText()))){
+                            InsertUserTask insertUserTask = new InsertUserTask(new User(1,usernameField.getText(),passwordField.getText()));
+                            insertUserTask.setOnSucceeded((ev2)->{
+                                errorText.setFill(Color.GREEN);
+                                errorText.setText("User created successfully !");
+                            });
+                            exec.execute(insertUserTask);
                         }
                         else {
                             errorText.setText("Username Taken!");
                         }
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    });
+                    fetchUsersTask.run();
                 }
                 else {
                     errorText.setText("Passwords don't match!");

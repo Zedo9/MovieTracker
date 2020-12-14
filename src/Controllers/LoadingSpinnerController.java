@@ -24,6 +24,12 @@ public class LoadingSpinnerController implements Initializable {
         setRotate(circle3,true,145,24);
     }
 
+    public LoadingSpinnerController(){
+        setRotate(circle1,true,360,10);
+        setRotate(circle2,true,180,18);
+        setRotate(circle3,true,145,24);
+    }
+
     private void setRotate(Circle c, boolean reverse,int angle,int duration){
         RotateTransition rotateTransition = new RotateTransition(Duration.seconds(duration),c);
         rotateTransition.setAutoReverse(reverse);

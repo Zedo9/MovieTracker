@@ -28,9 +28,6 @@ public class DashboardController implements Initializable {
     @FXML
     private HBox mainContent;
 
-    @FXML
-    private ProgressBar progressBar;
-
 
     public void navigateTo(String fxmlLink) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../Views/"+fxmlLink));
@@ -63,7 +60,7 @@ public class DashboardController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("../Views/LoginView.fxml"));
         Scene s = new Scene(root,1280,720);
         Stage window = (Stage)((Node)e.getSource()).getScene().getWindow();
-        window .setScene(s);
+        window.setScene(s);
         window.show();
     }
 }
