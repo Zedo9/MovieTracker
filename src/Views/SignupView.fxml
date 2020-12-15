@@ -88,7 +88,7 @@
          <HBox.margin>
             <Insets right="20.0"/>
          </HBox.margin>
-         <Image url="@../Main/resources/assets/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.png"/>
+         <Image url="@../Main/resources/assets/logo.png"/>
       </ImageView>
    </HBox>
 </VBox>

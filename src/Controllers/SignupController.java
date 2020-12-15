@@ -1,10 +1,8 @@
 package Controllers;
 
-import Model.DBUtils;
 import Model.User;
 import Tasks.FetchUsersTask;
 import Tasks.InsertUserTask;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,13 +13,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.Executor;
@@ -55,7 +55,12 @@ public class SignupController implements Initializable {
         });
     }
 
-    public void handleSignupButtonClick(ActionEvent e) {
+    public void handleSignupButtonClick() {
+        ImageView loadingView = new ImageView(new Image("Main/resources/assets/loading7.gif"));
+        loadingView.setFitWidth(128);
+        loadingView.setFitHeight(20);
+        signupButton.setText("");
+        signupButton.setGraphic(loadingView);
         errorText.setFill(Color.RED);
         errorText.setText("");
         if (usernameField.getText().length() > 0){
@@ -68,6 +73,7 @@ public class SignupController implements Initializable {
                             InsertUserTask insertUserTask = new InsertUserTask(new User(1,usernameField.getText(),passwordField.getText()));
                             insertUserTask.setOnSucceeded((ev2)->{
                                 errorText.setFill(Color.GREEN);
+                                signupButton.setGraphic(null);
                                 errorText.setText("User created successfully !");
                             });
                             exec.execute(insertUserTask);
