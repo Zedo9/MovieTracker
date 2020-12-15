@@ -49,7 +49,7 @@ public class MovieCardController  implements Initializable {
         filmTitle.setText(movieModel.getTitle());
         //setting genres
         StringBuilder genres = new StringBuilder();
-        movieModel.getGenres().forEach(e -> genres.append(e).append(" | "));
+        movieModel.getGenres().stream().limit(4).forEach(e -> genres.append(e).append(" | "));
         genres.setLength(genres.length()-2);
         genresText.setText(genres.toString());
         filmPoster.setImage(new Image ("https://image.tmdb.org/t/p/w300" + movieModel.getPosterLink(),false));

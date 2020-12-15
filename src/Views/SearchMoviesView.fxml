@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1000.0" style="-fx-background-color: #0d253f;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SearchMoviesController">
+   <children>
+      <HBox fx:id="titleContainer" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Text fill="#01b4e4" strokeType="OUTSIDE" strokeWidth="0.0" text="Look for something !">
+               <font>
+                  <Font name="FontAwesome" size="30.0" />
+               </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Text>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="56.0" prefWidth="1000.0" spacing="20.0">
+         <children>
+            <TextField fx:id="searchField" />
+            <Button mnemonicParsing="false" onAction="#handleSearchButtonClick" text="Search" />
+         </children>
+      </HBox>
+      <ScrollPane hbarPolicy="NEVER" prefWidth="1000.0" styleClass="mainScrollPane" stylesheets="@styles.css">
+         <content>
+            <FlowPane fx:id="content" columnHalignment="CENTER" hgap="10.0" prefHeight="516.0" prefWidth="970.0" prefWrapLength="200.0" style="-fx-background-color: transparent;" vgap="30.0" />
+         </content>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </ScrollPane>
+   </children>
+</VBox>

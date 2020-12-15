@@ -1,5 +1,6 @@
 package Controllers;
 
+import Model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,8 +42,16 @@ public class LoginController implements  Initializable{
 
 
     public void handleLoginButtonClick(ActionEvent e) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../Views/DashboardView.fxml"));
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../Views/DashboardView.fxml"));
+        Parent root = loader.load();
+
         Scene s = new Scene(root,1280,720);
+
+        DashboardController controller = loader.getController();
+        User user = new User(1,"TEST","pass");
+        controller.initData(user);
         Stage window = (Stage)((Node)e.getSource()).getScene().getWindow();
         window.setScene(s);
         window.show();
