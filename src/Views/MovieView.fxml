@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<ScrollPane hbarPolicy="NEVER" maxHeight="720.0" maxWidth="1000.0" minHeight="720.0" minWidth="1000.0" prefHeight="720.0" prefWidth="1000.0" style="-fx-background-color: #0d253f;" styleClass="mainScrollPane" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MovieController">
+   <content>
+      <VBox spacing="5.0">
+         <children>
+            <HBox alignment="CENTER" maxHeight="325.0" prefHeight="268.0" prefWidth="738.0" spacing="10.0">
+               <children>
+                  <ImageView fx:id="moviePoster" fitHeight="279.0" fitWidth="189.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../Downloads/eLT8Cu357VOwBVTitkmlDEg32Fs.jpg" />
+                     </image>
+                  </ImageView>
+                  <VBox prefHeight="268.0" prefWidth="815.0" spacing="25.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT">
+                           <children>
+                              <Text fx:id="movieTitle" fill="#01b4e4" strokeType="OUTSIDE" strokeWidth="0.0" text="Movie Title" wrappingWidth="625.1656799316406">
+                                 <font>
+                                    <Font name="FontAwesome" size="25.0" />
+                                 </font>
+                              </Text>
+                              <Hyperlink fx:id="movieTrailer" prefHeight="24.0" prefWidth="69.0" text="(Trailer)" />
+                              <Text fx:id="movieRating" fill="#90cea1" strokeType="OUTSIDE" strokeWidth="0.0" text="6.5" wrappingWidth="60.0712890625">
+                                 <font>
+                                    <Font name="FontAwesome" size="25.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                        <Text fx:id="movieOverview" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="An eclectic foursome of aspiring teenage witches get more than they bargained for as they lean into their newfound powers.qsdqsdqsd qsd qsd qs dqsd sqd qsdsq dqsdqsd sq sqd sq " wrappingWidth="750.0000610351562">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Text>
+                        <HBox prefHeight="51.0" prefWidth="742.0" spacing="20.0">
+                           <children>
+                              <Button fx:id="addToWatchListButton" mnemonicParsing="false" onAction="#handleAddToWatchListButtonClick" text="Add to WatchList">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="addToFavouritesButton" mnemonicParsing="false" onAction="#handleAddToFavouritesButtonClick" text="Add to Favourites">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Genres : " />
+                              <Text fx:id="movieGenres" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Genre 1 | Genre 2" />
+                              <Text fx:id="movieReleaseDate" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="20-10-2012" translateX="300.0" />
+                              <Text fx:id="movieDuration" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="60 minutes" translateX="350.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="57.0" prefWidth="967.0">
+               <children>
+                  <VBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="968.0" spacing="10.0">
+                     <children>
+                        <Text fill="#01b4e4" strokeType="OUTSIDE" strokeWidth="0.0" text="You may also like...">
+                           <font>
+                              <Font name="FontAwesome" size="33.0" />
+                           </font>
+                        </Text>
+                        <FlowPane fx:id="content" columnHalignment="CENTER" hgap="10.0" prefHeight="616.0" prefWidth="970.0" prefWrapLength="200.0" vgap="30.0" />
+                     </children></VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </content>
+   <padding>
+      <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+   </padding>
+</ScrollPane>

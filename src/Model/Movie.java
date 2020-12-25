@@ -1,12 +1,31 @@
 package Model;
 
-import java.sql.JDBCType;
 import java.util.ArrayList;
 
 public class Movie {
+    public boolean isFavourite() {
+        return isFavourite;
+    }
+
+    public void setFavourite(boolean favourite) {
+        isFavourite = favourite;
+    }
+
+    public boolean isWatchList() {
+        return isWatchList;
+    }
+
+    public void setWatchList(boolean watchList) {
+        isWatchList = watchList;
+    }
+
+    public void setId(double id) {
+        this.id = id;
+    }
+
     public boolean isFavourite;
     public boolean isWatchList;
-    private int id;
+    private double id;
     private ArrayList<String> genres;
     private float rating;
     private int length;
@@ -21,7 +40,7 @@ public class Movie {
         this.title = title;
     }
 
-    public Movie(int id,
+    public Movie(double id,
                  float rating,
                  int length,
                  String posterLink,
@@ -39,7 +58,6 @@ public class Movie {
         this.overview = overview;
         this.isFavourite = isFavourite;
         this.isWatchList = isWatchList;
-
     }
 
 

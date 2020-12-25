@@ -3,11 +3,12 @@ package Controllers;
 import Model.Movie;
 import Model.User;
 import Tasks.FetchTrendingMoviesTask;
-import Tasks.FetchUpcomingMoviesTask;
+import Tasks.FetchUserFavourites;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,7 +21,10 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class UpcomingMoviesController implements Initializable {
+public class FavouriteMoviesController implements Initializable {
+
+    private User user;
+
     @FXML
     private FlowPane content;
 
@@ -30,15 +34,14 @@ public class UpcomingMoviesController implements Initializable {
     @FXML
     private HBox titleContainer;
 
-    private User user;
-
-    public void initData(User user ){
+    public void initData(User user){
         this.user = user;
         ImageView loadingView = new ImageView(new Image("Main/resources/assets/loading7.gif"));
         loadingView.setFitWidth(45);
         loadingView.setFitHeight(45);
         titleContainer.getChildren().add(loadingView);
-        Task<List<Movie>> fetchTask = new FetchUpcomingMoviesTask(user);
+        System.out.println("trending " + user);
+        Task<List<Movie>> fetchTask = new FetchUserFavourites(user.getId());
         fetchTask.setOnFailed(e -> fetchTask.getException().printStackTrace());
         fetchTask.setOnSucceeded((ev) -> {
             fetchTask.getValue().forEach((movie) -> {
@@ -48,6 +51,7 @@ public class UpcomingMoviesController implements Initializable {
                     MovieCardController movieCardController = loader.getController();
                     movieCardController.setMovieModel(movie);
                     movieCardController.setUser(user);
+                    movieCardController.generateAddButtons();
                     content.getChildren().add(MovieCard);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -68,4 +72,5 @@ public class UpcomingMoviesController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
     }
+
 }

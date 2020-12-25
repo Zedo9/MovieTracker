@@ -4,8 +4,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 public class APIData {
+    private static User user;
     private final static APIUtils api = new APIUtils();
     private final static String API_KEY = "?api_key=82aa513c60c3c3a2179c97c32968a4d4";
     private final static String API_LINK = "https://api.themoviedb.org/3";
@@ -17,6 +19,27 @@ public class APIData {
         url.append(API_KEY);
         url.append("&query=");
         url.append(pureQuery);
+        System.out.println(url.toString());
+        api.connect(url.toString());
+        String resp = api.getResponse().toString();
+        api.closeConnection();
+        ArrayList<Movie> result = new ArrayList<>();
+        JSONObject respJSON = new JSONObject(resp);
+        JSONArray movieObjects = respJSON.getJSONArray("results");
+        movieObjects.forEach(e -> {
+            JSONObject movie = (JSONObject) e;
+            result.add(getMovieById((movie.getInt("id"))));
+        });
+        System.out.println(result);
+        return result;
+    }
+
+    public static ArrayList<Movie> getRecommendations(int id){
+        StringBuilder url = new StringBuilder(API_LINK);
+        url.append("/movie/");
+        url.append(id);
+        url.append("/recommendations");
+        url.append(API_KEY);
         System.out.println(url.toString());
         api.connect(url.toString());
         String resp = api.getResponse().toString();
@@ -75,12 +98,12 @@ public class APIData {
         url.append("/movie/");
         url.append(id);
         url.append(API_KEY);
-        System.out.println(url.toString());
+        //System.out.println(url.toString());
         api.connect(url.toString());
         String resp = api.getResponse().toString();
         api.closeConnection();
         JSONObject resJson = new JSONObject(resp);
-        int moveId = resJson.getInt("id");
+        double movieId = resJson.getDouble("id");
         Object poster = resJson.get("poster_path");
         String moviePoster ="";
         if (poster != JSONObject.NULL){
@@ -95,8 +118,9 @@ public class APIData {
         }
         String movieTitle = resJson.getString("title");
         float movieRating = resJson.getFloat("vote_average");
-        int movieRevenue = resJson.getInt("revenue");
-        Movie result = new Movie(moveId,movieRating,movieLength,moviePoster,movieTitle,movieReleaseDate,movieOverview,false,false);
+        boolean isFavourite = user.getFavourites().contains(movieId);
+        boolean isWatchList = user.getWatchList().contains(movieId);
+        Movie result = new Movie(movieId,movieRating,movieLength,moviePoster,movieTitle,movieReleaseDate,movieOverview,isFavourite,isWatchList);
         result.setGenres(getGenres(new JSONArray(resJson.getJSONArray("genres"))));
         return result;
     }
@@ -116,5 +140,11 @@ public class APIData {
             result.add("Unknown");
         }
         return result;
+    }
+
+    public static void setUser(User user) {
+        user.fetchFavourites();
+        user.fetchWatchList();
+        APIData.user = user;
     }
 }

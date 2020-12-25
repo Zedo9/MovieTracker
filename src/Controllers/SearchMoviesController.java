@@ -1,6 +1,7 @@
 package Controllers;
 
 import Model.Movie;
+import Model.User;
 import Tasks.FetchSearchedMoviesTask;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -35,6 +36,12 @@ public class SearchMoviesController implements Initializable {
     private ImageView loadingView;
 
 
+    private User user;
+
+    public void initData(User user){
+        this.user = user;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ImageView loadingView = new ImageView(new Image("Main/resources/assets/loading7.gif"));
@@ -46,7 +53,7 @@ public class SearchMoviesController implements Initializable {
 
     public void handleSearchButtonClick(javafx.event.ActionEvent event) {
         String query = searchField.getText();
-        Task<List<Movie>> fetchTask = new FetchSearchedMoviesTask(query);
+        Task<List<Movie>> fetchTask = new FetchSearchedMoviesTask(query,user);
         fetchTask.setOnFailed(e -> fetchTask.getException().printStackTrace());
         fetchTask.setOnSucceeded((ev) -> {
             content.getChildren().clear();
@@ -56,6 +63,7 @@ public class SearchMoviesController implements Initializable {
                     Parent MovieCard = loader.load();
                     MovieCardController movieCardController = loader.getController();
                     movieCardController.setMovieModel(movie);
+                    movieCardController.setUser(user);
                     content.getChildren().add(MovieCard);
                 } catch (IOException e) {
                     e.printStackTrace();

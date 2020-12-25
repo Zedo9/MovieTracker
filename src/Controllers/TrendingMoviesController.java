@@ -2,6 +2,7 @@ package Controllers;
 
 import Model.APIData;
 import Model.Movie;
+import Model.User;
 import Tasks.FetchTrendingMoviesTask;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -19,6 +20,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class TrendingMoviesController implements Initializable {
+
+    private User user;
+
     @FXML
     private FlowPane content;
 
@@ -28,13 +32,14 @@ public class TrendingMoviesController implements Initializable {
     @FXML
     private HBox titleContainer;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initData(User user){
+        this.user = user;
         ImageView loadingView = new ImageView(new Image("Main/resources/assets/loading7.gif"));
         loadingView.setFitWidth(45);
         loadingView.setFitHeight(45);
         titleContainer.getChildren().add(loadingView);
-        Task<List<Movie>> fetchTask = new FetchTrendingMoviesTask();
+        System.out.println("trending " + user);
+        Task<List<Movie>> fetchTask = new FetchTrendingMoviesTask(user);
         fetchTask.setOnFailed(e -> fetchTask.getException().printStackTrace());
         fetchTask.setOnSucceeded((ev) -> {
             fetchTask.getValue().forEach((movie) -> {
@@ -43,6 +48,8 @@ public class TrendingMoviesController implements Initializable {
                     Parent MovieCard = loader.load();
                     MovieCardController movieCardController = loader.getController();
                     movieCardController.setMovieModel(movie);
+                    movieCardController.setUser(user);
+                    movieCardController.generateAddButtons();
                     content.getChildren().add(MovieCard);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -58,4 +65,8 @@ public class TrendingMoviesController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {}
+
 }
